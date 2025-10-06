@@ -2,9 +2,10 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { IpcService } from 'src/app/ipc.service';
 
 @Component({
-  selector: 'app-component1',
-  templateUrl: './component1.component.html',
-  styleUrls: ['./component1.component.css']
+    selector: 'app-component1',
+    templateUrl: './component1.component.html',
+    styleUrls: ['./component1.component.css'],
+    standalone: false
 })
 export class Component1Component implements OnInit {
   arch = '-';

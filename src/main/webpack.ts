@@ -1,49 +1,54 @@
 import * as path from 'path';
 
-// Add your plugins here
-const plugins: any = [];
-
-// Only require() this when we actually want to run Electron in dev mode
-// with hot-reloading.
-if (process.env.WEBPACK_DEV_SERVER_URL) {
-  const ElectronReloadPlugin = require("webpack-electron-reload")({
-    path: ".", // The directory where to watch for file changes
-  });
-  plugins.push(ElectronReloadPlugin());
-}
-
-module.exports = (env: string) => {
-  if (!env) { env = 'development'; }
+export default async function getConfig(env: string = 'development') {
+  const plugins: any[] = [];
+  
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    const mod: unknown = await import('webpack-electron-reload');
+    const factory = ((mod as any).default ?? mod) as any;
+    
+    try {
+      if (typeof factory === 'function') {
+        const maybePluginOrFactory = factory({ path: '.' });
+        const plugin =
+                typeof maybePluginOrFactory === 'function'
+                  ? maybePluginOrFactory()
+                  : maybePluginOrFactory;
+        if (plugin) plugins.push(plugin);
+      }
+    } catch {
+      /* ignore dev-only failures */
+    }
+  }
+  
   return {
     entry: {
-      main: './src/main/main.ts'
+      main: './src/main/main.ts',
     },
     target: 'electron-main',
     output: {
-      path: path.resolve(__dirname, '../../dist/main'),
-      filename: 'electron-main.js'
+      // use process.cwd() instead of __dirname
+      path: path.resolve(process.cwd(), 'dist/main'),
+      filename: 'electron-main.js',
     },
-    externals: [ ],
+    externals: [],
     devtool: 'source-map',
     module: {
       rules: [
         {
-          test: /\.ts?$/,
+          test: /\.ts$/,
           loader: 'ts-loader',
-          exclude: /node_modules/
-        }
-      ]
+          exclude: /node_modules/,
+        },
+      ],
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.jsx', '.json'],
-      alias: {
-        // TODO
-      }
     },
     node: {
       __dirname: true,
-      __filename: true
+      __filename: true,
     },
     plugins,
   };
-};
+}
