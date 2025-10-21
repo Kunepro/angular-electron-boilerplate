@@ -36,6 +36,7 @@
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "^20.3.6",
+    "@angular-eslint/schematics": "^20.4.0",
     "@angular/animations": "^20.3.6",
     "@angular/cdk": "^20.2.7",
     "@angular/cli": "^20.3.6",
