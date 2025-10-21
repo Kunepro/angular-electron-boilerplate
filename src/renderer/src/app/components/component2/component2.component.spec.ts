@@ -1,24 +1,23 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { Component2Component } from './component2.component';
 
 describe('Component2Component', () => {
   let component: Component2Component;
   let fixture: ComponentFixture<Component2Component>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ Component2Component ]
-    })
-    .compileComponents();
-  }));
-
+  
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [Component2Component],
+      providers: [
+        provideZonelessChangeDetection(),
+      ],
+    });
+    
     fixture = TestBed.createComponent(Component2Component);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
-
+  
   it('should create', () => {
     expect(component).toBeTruthy();
   });

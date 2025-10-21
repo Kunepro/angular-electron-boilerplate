@@ -1,34 +1,35 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  OnInit,
-  NgZone,
   inject,
+  OnInit,
+  signal,
 } from '@angular/core';
 import { IpcService } from 'src/app/ipc.service';
 
 @Component({
-    selector: 'app-component1',
-    templateUrl: './component1.component.html',
-    styleUrls: ['./component1.component.css'],
-    standalone: false
+  selector:    'app-component1',
+  templateUrl: './component1.component.html',
+  styleUrls:   [ './component1.component.css' ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone:  true,
 })
 export class Component1Component implements OnInit {
-  arch = '-';
-  hostname = '-';
-  platform = '-';
-  release = '-';
+  // Use signals instead of regular properties
+  arch = signal('-');
+  hostname = signal('-');
+  platform = signal('-');
+  release = signal('-');
+  
   private ipcService = inject(IpcService);
-  private ngZone = inject(NgZone);
-
+  
   ngOnInit() {
     this.ipcService.getSystemInfoAsync()
       .subscribe(systemInfo => {
-        this.ngZone.run(() => {
-          this.arch = systemInfo.Arch;
-          this.hostname = systemInfo.Hostname;
-          this.platform = systemInfo.Platform;
-          this.release = systemInfo.Release;
-        });
+        this.arch.set(systemInfo.Arch);
+        this.hostname.set(systemInfo.Hostname);
+        this.platform.set(systemInfo.Platform);
+        this.release.set(systemInfo.Release);
       });
   }
 }
