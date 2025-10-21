@@ -10,7 +10,7 @@ import { IpcService } from 'src/app/ipc.service';
 @Component({
   selector:    'app-component1',
   templateUrl: './component1.component.html',
-  styleUrls:   [ './component1.component.css' ],
+  styleUrls:   [ './component1.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:  true,
 })

@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector:        'app-navlist',
   templateUrl:     './navlist.component.html',
-  styleUrls:       [ './navlist.component.css' ],
+  styleUrls:       [ './navlist.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone:      true,
   imports:         [
