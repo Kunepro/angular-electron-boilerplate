@@ -80,7 +80,6 @@
     "wait-on": "^5.2.1",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
-    "webpack-electron-reload": "^1.0.1",
-    "zone.js": "^0.15.1"
+    "webpack-electron-reload": "^1.0.1"
   }
 }
