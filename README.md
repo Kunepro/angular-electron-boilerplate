@@ -1,42 +1,50 @@
 # angular-electron-boilerplate
 
-This template provides a starting point of a modern and secure Electron app.
+This template provides a starting point for a modern and secure Electron app with enhanced features and updated dependencies.
 
 ## Screenshots
 ![Screenshots](/images/modern-electron-screenshots.png)
 
-## Project gloals
+## Project Goals
 
-Use [Angular](https://angular.io/) for the Electron renderer process. Using a modern frontend framework helps you organize your codebase once your Electron app grows in complexity. Use the [Angular CLI](https://cli.angular.io/) to generate components, routes, services and pipes. To give a modern look-and-feel [Angular Material](https://material.angular.io/) is used. This can easily be removed if it is not needed.
+Use [Angular](https://angular.io/) (v20.3) for the Electron renderer process, leveraging a modern frontend framework to organize complex codebases. The [Angular CLI](https://cli.angular.io/) is used to generate components, routes, services, and pipes. For a modern look-and-feel, [Angular Material](https://material.angular.io/) is included, which can be removed if not needed. The app now uses SCSS instead of CSS for improved styling capabilities.
 
-Use [TypeScript](https://www.typescriptlang.org/) for strongly-typed JavaScript.
+Use [TypeScript](https://www.typescriptlang.org/) for strongly-typed JavaScript, with components migrated to standalone architecture (no modules) and Angular configured to be zone-less for improved performance.
 
-Use [webpack](https://webpack.js.org/) to pack *main* and *preload* to produce small fast build output. Everything is packed, so no need to include the */node_modules* folder, in order to remove unnessesary files and to produce small and fast builds.
+Use [webpack](https://webpack.js.org/) to bundle *main*, *preload*, and *renderer* processes, producing small, fast build outputs. The */node_modules* folder is excluded from builds to optimize size and speed.
 
-Use most secure Electron security settings: contextIsolation and disabled nodeIntegration and disabled enableRemoteModule. preload uses the contextBridge.
+Implement **Hot Module Reload (HMR)** for faster development, enabling real-time updates during local development.
+
+Use secure Electron settings: `contextIsolation`, disabled `nodeIntegration`, and disabled `enableRemoteModule`. The preload script uses `contextBridge` for secure communication.
+
+Switch from TSLint to ESLint for linting, with fixed test and linting suites to ensure code quality.
+
+## License
+This project is licensed under the [MIT License](https://github.com/frederiksen/angular-electron-boilerplate/blob/master/LICENSE).
 
 ## CI
 ![CI](https://github.com/frederiksen/angular-electron-boilerplate/workflows/CI/badge.svg)
 
 [Builds](https://github.com/frederiksen/angular-electron-boilerplate/actions)
 
-## Getting started
+## Getting Started
 
-Try out this [template](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/):
+Clone your forked repository and try out this template:
 
 ```bash
-$ git clone https://github.com/frederiksen/angular-electron-boilerplate
+$ git clone <your-repository-url>
 $ cd angular-electron-boilerplate
 $ npm install
-$ npm run build:dev:all
 $ npm start
 ```
 
-## NPM scripts
+The `npm start` command now builds and runs the app locally with **Hot Module Reload (HMR)** enabled for rapid development.
+
+## NPM Scripts
 
 ### Builds
 
-This builds a project and places the output in the */dist* folder.
+Builds output to the */dist* folder.
 
 | Command | Description |
 | --- | --- |
@@ -51,7 +59,7 @@ This builds a project and places the output in the */dist* folder.
 
 ### Watch
 
-Start watching for source code changes, and builds after each source code change.
+Watch for source code changes and rebuild automatically.
 
 | Command | Description |
 | --- | --- |
@@ -62,55 +70,51 @@ Start watching for source code changes, and builds after each source code change
 
 ### Tests
 
-Test commands.
+Test and linting commands, updated to use ESLint and resolve prior issues.
 
 | Command | Description |
 | --- | --- |
-| `npm run test:test` | Executes all Angular unit-tests |
-| `npm run test:e2e` | Executes Angular end-2-end tests |
-| `npm run test:lint` | Angular lint |
+| `npm run test:test` | Executes all Angular unit tests |
+| `npm run test:e2e` | Executes Angular end-to-end tests |
+| `npm run test:lint` | Runs ESLint for code linting |
 
 ### Updates
 
-Commands for updating NPM modules.
+Commands for updating dependencies.
 
 | Command | Description |
 | --- | --- |
-| `npm run update:angular` | Easy update to latest stable Angular |
-| `npm run update:electron` | Easy update to latest stable Electron |
-| `npm run update:webpack` | Easy update to latest stable WebPack |
+| `npm run update:angular` | Update to the latest stable Angular (currently v20.3) |
+| `npm run update:electron` | Update to the latest stable Electron |
+| `npm run update:webpack` | Update to the latest stable Webpack |
 
 ### Packaging
 
 | Command | Description |
 | --- | --- |
-| `npm run package` | Package current */dist* folder into an app in the */release-builds* folder |
-| `npm run release` | First build a production build, then package */dist* folder into an app in the */release-builds* folder |
+| `npm run package` | Package the */dist* folder into an app in the */release-builds* folder |
+| `npm run release` | Build a production build and package it into an app in the */release-builds* folder |
 
 ## Debugging
 
 ![Screenshots](/images/debug-electron-main-renderer.PNG)
 
-Use [Code](https://code.visualstudio.com/) to get a super debug environment.
+Use [Visual Studio Code](https://code.visualstudio.com/) for an enhanced debugging experience. Install the [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension.
 
-This extension is needed: [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
-
-First be sure to have build everything:
+Build the project first:
 
 ```bash
 $ npm run build:dev:all
 ```
 
-Now set some breakpoints both in the main source code and in the renderer source code.
+Set breakpoints in the main and renderer source code. In VS Code, press **Ctrl+Shift+D**, select **Main + Renderer**, and press **F5** to start debugging.
 
-From Code press **Ctrl+Shift+D** and select **Main + Renderer** and press **F5**
+## Packaging into an App
 
-## Packaging into an app
-
-This is where all the magic happens.
+To create a packaged app for Windows, macOS, or Linux:
 
 ```bash
 $ npm run release
 ```
 
-Then your app will be put into the */release-builds* folder. Can build an app for Windows, macOS and Linux.
+The app will be output to the */release-builds* folder.
