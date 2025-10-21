@@ -10,10 +10,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "forceConsistentCasingInFileNames": true,
     "target": "ESNext",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
       "ESNext",
       "dom"

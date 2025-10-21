@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  inject,
+} from '@angular/core';
 import { IpcService } from './ipc.service';
 
 @Component({
@@ -9,9 +12,7 @@ import { IpcService } from './ipc.service';
 })
 export class AppComponent {
   title = 'angular-electron-boilerplate';
-
-  constructor(private ipcService: IpcService) {
-  }
+  private ipcService = inject(IpcService);
 
   clickDevTools() {
     this.ipcService.openDevTools();

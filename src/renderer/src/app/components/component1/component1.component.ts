@@ -1,4 +1,9 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  NgZone,
+  inject,
+} from '@angular/core';
 import { IpcService } from 'src/app/ipc.service';
 
 @Component({
@@ -12,8 +17,8 @@ export class Component1Component implements OnInit {
   hostname = '-';
   platform = '-';
   release = '-';
-
-  constructor(private ipcService: IpcService, private ngZone: NgZone) { }
+  private ipcService = inject(IpcService);
+  private ngZone = inject(NgZone);
 
   ngOnInit() {
     this.ipcService.getSystemInfoAsync()
