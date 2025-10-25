@@ -7,8 +7,8 @@ export default (env: string = 'development') => ({
   target:    'electron-preload',
   output:    {
     path:     path.resolve(
-      process.cwd(), // or use a relative path
-      '../../dist/preload',
+      process.cwd(),
+      'dist/preload',
     ),
     filename: 'preload.js',
   },
