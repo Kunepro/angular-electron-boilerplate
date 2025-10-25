@@ -28,26 +28,28 @@ app.on(
 
 async function createWindow(): Promise<void> {
   win = new BrowserWindow({
-    width:          800,
-    height:         600,
+    width:          1680,
+    height:         900,
     resizable:      true,
     webPreferences: {
       // Disabled Node integration
-      nodeIntegration: false,
+      nodeIntegration: false, // defaults to false, left here for sanity
       // protect against prototype pollution
-      contextIsolation: true,
+      contextIsolation: true, // defaults to true, left here for sanity
       // Preload script
       preload: path.join(
         app.getAppPath(),
         'dist/preload',
         'preload.js',
       ),
+      // TODO optional: adding `devTools: false` for production if prod build
     },
     show:           false, // Will be made visible after page has been fully loaded for the first ime
   });
   
-  // https://stackoverflow.com/a/58548866/600559
-  Menu.setApplicationMenu(null);
+  hideTopbarMenu();
+  
+  openDevToolsIfDevModeIsEnabled(win);
   
   win.once(
     'ready-to-show',
@@ -87,6 +89,15 @@ async function createWindow(): Promise<void> {
       win = null;
     },
   );
+}
+
+function hideTopbarMenu(): void {
+  // https://stackoverflow.com/a/58548866/600559
+  Menu.setApplicationMenu(null);
+}
+
+function openDevToolsIfDevModeIsEnabled(win: BrowserWindow): void {
+  win.webContents.openDevTools();
 }
 
 ipcMain.on(
