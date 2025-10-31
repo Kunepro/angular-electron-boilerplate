@@ -1,6 +1,6 @@
 # angular-electron-boilerplate
 
-This template provides a starting point for a modern and secure Electron app with enhanced features and updated dependencies.
+This template provides a starting point for a modern and secure Electron app with Angular, enhanced features, updated dependencies, and SQLite integration using better-sqlite3.
 
 ## Screenshots
 ![Screenshots](/images/modern-electron-screenshots.png)
@@ -18,6 +18,8 @@ Implement **Hot Module Reload (HMR)** for faster development, enabling real-time
 Use secure Electron settings: `contextIsolation`, disabled `nodeIntegration`, and disabled `enableRemoteModule`. The preload script uses `contextBridge` for secure communication.
 
 Switch from TSLint to ESLint for linting, with fixed test and linting suites to ensure code quality.
+
+Integrated SQLite support using [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) for efficient local database operations.
 
 ## License
 This project is licensed under the [MIT License](https://github.com/frederiksen/angular-electron-boilerplate/blob/master/LICENSE).
@@ -39,6 +41,27 @@ $ npm start
 ```
 
 The `npm start` command now builds and runs the app locally with **Hot Module Reload (HMR)** enabled for rapid development.
+
+### Prerequisites for Building Native Modules
+This project integrates SQLite via better-sqlite3, a native module. If you encounter build errors after `npm install` or if `npm start` fails with issues related to better-sqlite3, ensure the following build tools are installed and then run `npm run rebuild-sqlite`.
+
+**Windows:**
+- Python (version 3.x)
+- Visual Studio Build Tools (with the "Desktop development with C++" workload)
+
+**macOS:**
+- Python (version 3.x)
+- Xcode Command Line Tools (install via `xcode-select --install`)
+
+**Linux:**
+- Python (version 3.x)
+- Build essentials (e.g., `sudo apt install build-essential` on Ubuntu/Debian, which includes gcc, g++, make)
+
+After installing these dependencies, run:
+```bash
+npm run rebuild-sqlite
+```
+Then try `npm start` again.
 
 ## NPM Scripts
 
