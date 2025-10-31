@@ -1,11 +1,12 @@
 {
-	"appId": "com.angular-electron-boilerplate",
-	"productName": "Angular Electron Boilerplate",
+	"appId": "com.angular-electron-sqlite-boilerplate",
+	"productName": "Angular Electron SQLite Boilerplate",
 	"win": {
 		"target": "nsis",
 		"icon": "icon.ico",
 		"artifactName": "${productName}.exe"
 	},
+	"publish": null,
 	"files": [
 		"dist/**/*",
 		"node_modules/**/*",

@@ -1,5 +1,5 @@
 {
-  "name": "angular-electron-boilerplate",
+  "name": "angular-electron-sqlite-boilerplate",
   "version": "0.0.0",
   "main": "./dist/main/electron-main.js",
   "scripts": {
