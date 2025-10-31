@@ -1,4 +1,4 @@
-# angular-electron-boilerplate
+# angular-electron-sqlite-boilerplate
 
 This template provides a starting point for a modern and secure Electron app with Angular, enhanced features, updated dependencies, and SQLite integration using better-sqlite3.
 
