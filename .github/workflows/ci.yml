@@ -19,7 +19,7 @@ jobs:
     - name: npm install
       run:
         npm install
-    - name: npm run release
+    - name: npm run package-release
       run:
         npm run release
     - uses: actions/upload-artifact@v4.0.0
