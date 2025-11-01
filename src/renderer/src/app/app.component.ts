@@ -30,7 +30,7 @@ import { IpcService } from './ipc.service';
   ],
 })
 export class AppComponent {
-  title              = 'angular-electron-boilerplate';
+  title              = 'angular-electron-sqlite-boilerplate';
   private ipcService = inject(IpcService);
   
   clickDevTools() {
