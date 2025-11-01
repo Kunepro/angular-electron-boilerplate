@@ -21,7 +21,7 @@ jobs:
         npm install
     - name: npm run package-release
       run:
-        npm run release
+        npm run package-release
     - uses: actions/upload-artifact@v4.0.0
       with:
         name: drop-${{ matrix.os }}
