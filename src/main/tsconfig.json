@@ -10,9 +10,6 @@
 		"emitDecoratorMetadata":        true,
 		"experimentalDecorators":       true,
 		"target":                       "ESNext",
-		"typeRoots":                    [
-			"node_modules/@types"
-		],
 		"lib":                          [
 			"ESNext",
 			"dom"
